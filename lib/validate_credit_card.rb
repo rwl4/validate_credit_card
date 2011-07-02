@@ -10,7 +10,7 @@ module ActiveModel
       end
 
       def luhn_valid?(card_number)
-        digits = card_number.gsub(/D/, '').each_char.map(&:to_i).reverse
+        digits = card_number.to_s.gsub(/D/, '').each_char.map(&:to_i).reverse
         flip = true
 
         digits.sum {|n| (flip ^= true) ? (n*2).divmod(10).sum() : n } % 10 == 0
